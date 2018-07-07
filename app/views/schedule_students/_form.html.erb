@@ -1,0 +1,28 @@
+<%= form_with(model: schedule_student, local: true) do |form| %>
+  <% if schedule_student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(schedule_student.errors.count, "error") %> prohibited this schedule_student from being saved:</h2>
+
+      <ul>
+      <% schedule_student.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%#= form.label :schedule_id %>
+    <%= form.hidden_field :schedule_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :student_id %>
+    <% exist_student_ids = ScheduleStudent.where("schedule_id = ?", schedule_student.schedule_id).select(:student_id) %>
+    <%= form.select :student_id, Student.where("not id in (?)", exist_student_ids).map {|student| [student.name, student.id]}, prompt: "Please select student" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Add student" %>
+  </div>
+<% end %>

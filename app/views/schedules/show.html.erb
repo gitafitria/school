@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lecture:</strong>
+  <%= @schedule.lecture.name %>
+</p>
+
+<p>
+  <strong>Teacher:</strong>
+  <%= @schedule.teacher.name %>
+</p>
+
+<strong>
+  Students on this schedule:
+</strong>
+<hr>
+
+<% if @schedule.schedule_students.any? %>
+  <ul>
+    <% @schedule.schedule_students.each do |schedule_student| %>
+      <li>
+        <%= schedule_student.student.name %>
+        ( <%= link_to "show profile", schedule_student.student %> )
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  Tidak ada
+<% end %>
+
+<br>
+<br>
+<h4>Add student on this schedule</h4>
+<hr>
+<%= render 'schedule_students/form', schedule_student: @schedule.schedule_students.new(schedule_id: @schedule.id) %>
+<%#= link_to "Add students to this schedule", new_schedule_student_path(schedule_id: @schedule.id) %>
+
+
+<br>
+<br>
+<br>
+<br>
+<%= link_to 'Edit', edit_schedule_path(@schedule) %> |
+<%= link_to 'Back', schedules_path %>

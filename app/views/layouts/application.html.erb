@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>School</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <strong>STUDENT</strong>
+      <ul>
+        <li>
+          <%= link_to "Student list", students_path %>
+        </li>
+        <li>
+          <%= link_to "New Student", new_student_path %>
+        </li>
+        <li>
+          <%= link_to "Deleted students", deleted_students_path %>
+        </li>
+      </ul>
+
+      <strong>TEACHER</strong>
+      <ul>
+        <li>
+          <%= link_to "Teacher list", teachers_path %>
+        </li>
+        <li>
+          <%= link_to "New Teacher", new_teacher_path %>
+        </li>
+      </ul>
+
+      <strong>LECTURE</strong>
+      <ul>
+        <li>
+          <%= link_to "Lecture", lectures_path %>
+        </li>
+        <li>
+          <%= link_to "New Lecture", new_lecture_path %>
+        </li>
+      </ul>
+
+      <strong>SCHEDULE</strong>
+      <ul>
+        <li>
+          <%= link_to "Schedule", schedules_path %>
+        </li>
+        <li>
+          <%= link_to "New Schedule", new_schedule_path %>
+        </li>
+      </ul>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>
